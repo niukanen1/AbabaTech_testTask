@@ -9,15 +9,18 @@ type BubblesProps = {
 }
 
 export default function BubbleBackground({} : BubblesProps) {
-    useEffect(() => {
-        setTimeout(() => {
-            console.log(document.getElementsByTagName('img')[0])
-            let fac = new FastAverageColor()
-            let color = fac.getColor(document.getElementsByTagName('img')[0])
-            console.log(color)
-        }, 5000)
+    const fac = new FastAverageColor();
+    const img = document.createElement('img');
+    img.src = `https://image.tmdb.org/t/p/original//1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg`;
+    img.crossOrigin = 'Anonymous';
 
-    }, [])
+    fac.getColorAsync(img)
+        .then(col => col.hex)
+        .catch(() => {
+            console.warn(`Can not calculate background color for } (}). Reason: CORS Policy`);
+            return '';
+        });
+
 
     return (
          <></>
