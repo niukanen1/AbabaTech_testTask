@@ -1,0 +1,7 @@
+{
+    "breadcrumbs.enabled": true,
+    "explorer.expandSingleFolderWorkspaces": true,
+    "path-autocomplete.enableFolderTrailingSlash": true,
+    "todo-tree.tree.disableCompactFolders": true,
+    "explorer.compactFolders": false
+}
