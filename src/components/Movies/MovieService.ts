@@ -16,8 +16,8 @@ export type GetMoviesResponseType = {
 
 export async function GetLatestCompactMovies(page: number = 1, moviesSortType: MovieSortType): Promise<MovieType[]> {
     console.log(process.env.REACT_APP_TMDB_API)
-    const queryURL = `https://api.themoviedb.org/3/movie/${moviesSortType}?api_key=${process.env.REACT_APP_TMDB_API}&language=en-US&page=${page}`; 
-    try { 
+    const queryURL = `https://api.themoviedb.org/3/movie/${moviesSortType}?api_key=${process.env.REACT_APP_TMDB_API}&language=en-US&page=${page}`;
+    try {
         const response = await fetch(queryURL)
         const movieList: GetMoviesResponseType = await response.json(); 
         return movieList.results

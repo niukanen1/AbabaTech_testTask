@@ -24,7 +24,7 @@ export default function MovieList() {
 				<p>Loading...</p>
 			) : (
 				<div className={styles.container_vertical}>
-					{movieList.map((movie) => (
+					{movieList?.map((movie) => (
 						<div key={movie.id}>
 							<MovieCompact movieData={movie} />
 						</div>
