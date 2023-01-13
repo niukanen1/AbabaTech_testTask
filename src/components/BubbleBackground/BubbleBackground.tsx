@@ -1,7 +1,5 @@
-import {PropsWithChildren, useEffect} from "react";
 import styles from './bubblebackground.module.css'
-import {FastAverageColor} from "fast-average-color";
-
+import Bubble from "./Bubble";
 
 type BubblesProps = {
 
@@ -9,20 +7,14 @@ type BubblesProps = {
 }
 
 export default function BubbleBackground({} : BubblesProps) {
-    const fac = new FastAverageColor();
-    const img = document.createElement('img');
-    img.src = `https://image.tmdb.org/t/p/original//1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg`;
-    img.crossOrigin = 'Anonymous';
-
-    fac.getColorAsync(img)
-        .then(col => col.hex)
-        .catch(() => {
-            console.warn(`Can not calculate background color for } (}). Reason: CORS Policy`);
-            return '';
-        });
-
-
+    const amount = 20
+    let list = []
+    for (let i = 0; i < amount; i++) {
+        list.push(<Bubble/>)
+    }
     return (
-         <></>
+        <div className={styles.bubbles}>
+            {list.map((el) => (el))}
+        </div>
     )
 }

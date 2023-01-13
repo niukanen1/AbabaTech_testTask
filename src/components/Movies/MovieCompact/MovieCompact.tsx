@@ -1,5 +1,6 @@
 import { Star } from "../../../icons/Star";
 import styles from "./Movie.module.css";
+import LikeButton from "../../Buttons/LikeButton/LikeButton";
 
 export type MovieType = {
 	adult: boolean;
@@ -37,6 +38,10 @@ export default function MovieCompact({ movieData }: { movieData: MovieType }) {
 				</div>
 				<p className={styles.releaseDate}>{movieData.release_date}</p>
 			</div>
+			<div>
+				<LikeButton action={() => {}}/>
+			</div>
+
 		</div>
 	);
 }

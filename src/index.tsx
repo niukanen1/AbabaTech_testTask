@@ -12,8 +12,4 @@ root.render(
   </React.StrictMode>
 );
 
-module.exports = {devServer: {
-        proxy: 'https://image.tmdb.org/',
-    }
-};
 
