@@ -61,11 +61,3 @@
         transform: scale(1);
     }
 }
-@media screen and (max-width: 480px) {
-    #container {
-        height: auto;
-    }
-    h1 {
-        font-size: 2.5rem;
-    }
-}

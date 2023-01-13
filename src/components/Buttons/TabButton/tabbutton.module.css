@@ -1,0 +1,41 @@
+:root{
+    --size: 2
+}
+
+.TabButton{
+    background-color: rgba(0,0,0,0);
+    border: none;
+    padding: 0 15px;
+}
+
+
+.TabImgButton {
+    cursor: pointer;
+    fill: #cecece;
+    position: relative;
+    width: 23px;
+    height: 18px;
+}
+
+.TabImgButton path{
+    fill: #cecece;;
+}
+.TabImgButton.liked path {
+    fill: #f3af11;
+}
+
+
+.TabImgButton.liked {
+    animation: liked .4s ease;
+}
+@keyframes liked {
+    0% {
+        transform: scale(.8);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

@@ -1,6 +1,7 @@
 import { Star } from "../../../icons/Star";
 import styles from "./Movie.module.css";
 import LikeButton from "../../Buttons/LikeButton/LikeButton";
+import TabButton from "../../Buttons/TabButton/TabButton";
 
 export type MovieType = {
 	adult: boolean;
@@ -40,6 +41,7 @@ export default function MovieCompact({ movieData }: { movieData: MovieType }) {
 			</div>
 			<div>
 				<LikeButton action={() => {}}/>
+				<TabButton action={() => {}}/>
 			</div>
 
 		</div>
