@@ -1,5 +1,5 @@
+import Bubble from './bubble'
 import styles from './bubblebackground.module.css'
-import Bubble from "./Bubble";
 
 type BubblesProps = {
 
