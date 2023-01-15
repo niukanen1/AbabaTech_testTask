@@ -7,7 +7,7 @@ export enum MovieSortType {
     upcoming = "upcoming"
 }
 
-export type PersonType = {
+export type PersonType ={
     id : number,
     whoIs : string,
     name : string

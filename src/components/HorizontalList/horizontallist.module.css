@@ -1,0 +1,32 @@
+.list{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+
+}
+
+
+
+.list::-webkit-scrollbar-track
+{
+
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0);
+}
+
+.list::-webkit-scrollbar
+{
+    height: 8px;
+    background-color: rgba(0,0,0,0);
+}
+
+.list::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #555;
+}
+
+
+.item{
+    margin-right: 20px;
+}
