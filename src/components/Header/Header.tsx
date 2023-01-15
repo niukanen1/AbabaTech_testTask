@@ -19,6 +19,9 @@ function Header() {
 		<nav className={styles.container}>
 			<ul>
 				<li className={styles.logo}>Movies point</li>
+                <li>
+                    <a href="/movies/1">Movies</a>
+                </li>
 				<li>
                     {AppStore.userData.isLoggedIn ? <Button action={()=>{}}></Button> : <></>}
 					<Button action={() => {setShowModal(true)}}>{modalType === ModalType.login ? "Log in" : "Sign up"}</Button>
