@@ -1,14 +1,25 @@
-import React from 'react';
+
 import './App.css';
-import MovieList from './components/Movies/MovieList/MovieList';
 import Button from "./components/Buttons/Button/Button";
-import BubbleBackground from "./components/BubbleBackground/BubbleBackground";
 import LikeButton from "./components/Buttons/LikeButton/LikeButton";
+import Header from './components/Header/Header';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import { FullMovieList } from './pages/FullMovieList/FullMovieList';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
   return (
     <div className="App">
-        <MovieList></MovieList>
+        <Routes>
+            <Route path='/' element={<Layout/>}>
+                <Route index element={<HomePage />}/>
+                <Route path={"movies/:pageId"} element={<FullMovieList/>}>
+                    <Route path={"movie:movieId"} element={""} />
+                </Route>
+            </Route>
+        </Routes>
+        <Header></Header>
         <Button action={() => console.log("action")} >Some text</Button>
         <LikeButton action={() => console.log("like")}/>
     </div>

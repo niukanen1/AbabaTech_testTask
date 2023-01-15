@@ -6,12 +6,12 @@ type ButtonProps = {
     action: () => void;
     border?: boolean;
     filled? : boolean
-
+    isSubmit?: boolean 
 
 
 }
 
-export default function Button({children, action, border=false, filled=false} : ButtonProps & PropsWithChildren) {
+export default function Button({children, action, border=false, filled=false, isSubmit=false} : ButtonProps & PropsWithChildren) {
     let style = [styles.button]
     if(border){
         style.push(styles.border)
@@ -19,8 +19,9 @@ export default function Button({children, action, border=false, filled=false} : 
     if(filled){
         style.push(styles.filled)
     }
+    
     return ( 
-        <button className={style.join(' ')} onClick={action}>
+        <button type={isSubmit ? "submit" : undefined} className={style.join(' ')} onClick={action}>
             {children}
         </button>
     )
