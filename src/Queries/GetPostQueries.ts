@@ -17,6 +17,7 @@ export const queries_URLs = {
     },
     logout: { 
         url: "https://ababa-tech-test-task.onrender.com/protected/logout", 
+        // url:"http://localhost:4000/protected/logout",
         method: "POST"
     },
     addFavoriteMovie: { 
