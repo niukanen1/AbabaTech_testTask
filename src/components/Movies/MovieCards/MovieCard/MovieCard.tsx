@@ -16,7 +16,7 @@ export default function MovieCard({Movie} : ButtonProps) {
             <div className={styles.card} >
                 <img src={"https://image.tmdb.org/t/p/original/" + Movie.poster_path} alt={""} className={styles.movieImage}/>
                 <span className={styles.name}>{Movie.title}</span>
-                <span className={styles.rate}><Star width={14} height={14}/>{Movie.vote_average}</span>
+                <span className={styles.rate}><Star width={14} height={14}/>{Movie.vote_average.toString().slice(0,3)}</span>
             </div>
         </a>
     )

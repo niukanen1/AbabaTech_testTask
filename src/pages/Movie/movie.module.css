@@ -1,3 +1,31 @@
+@media screen and (max-width: 700px) {
+
+    .movieDescription{
+        width: calc(100% - 20px) !important;
+    }
+
+    .peopleInMovie{
+        width: calc(100% - 20px) !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .movieDescription{
+        flex-direction: column;
+    }
+
+    .mainDescription{
+        padding: 20px 0 !important;
+        width: 100% !important;
+    }
+
+    .containerForImg{
+        width: 100%;
+    }
+}
+
+
 .main{
     display: flex;
     max-width: 1000px;
