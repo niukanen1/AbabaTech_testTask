@@ -29,12 +29,13 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
             closeModal();
             return 
 		}
-        alert(response.message); 
+        
         if (response.success) { 
             AppStore.setIsLoggedIn(true);
             console.log(response.message);
             console.log(AppStore.userData)
         }
+        alert(response.message); 
         closeModal();
 	};
 
