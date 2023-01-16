@@ -1,8 +1,5 @@
 
 import './App.css';
-import Button from "./components/Buttons/Button/Button";
-import LikeButton from "./components/Buttons/LikeButton/LikeButton";
-import Header from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import { FullMovieList } from './pages/FullMovieList/FullMovieList';

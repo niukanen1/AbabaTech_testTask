@@ -35,17 +35,17 @@ export type GetMoviesResponseType = {
     total_results: number
 }
 
-export async function GetLatestCompactMovies(page: number = 1, moviesSortType: MovieSortType): Promise<MovieType[]> {
+export async function GetLatestCompactMovies(page: number = 1, moviesSortType: MovieSortType): Promise<GetMoviesResponseType | null> {
     console.log(process.env.REACT_APP_TMDB_API)
     const queryURL = `https://api.themoviedb.org/3/movie/${moviesSortType}?api_key=${process.env.REACT_APP_TMDB_API}&language=en-US&page=${page}`;
     try {
         const response = await fetch(queryURL)
         const movieList: GetMoviesResponseType = await response.json(); 
-        return movieList.results
+        return movieList
     } catch (err) { 
         console.log(err);
     }
-    return []; 
+    return null; 
 }
 
 export async function GetPersonImage(id : number): Promise<PersonImageType | null> {
@@ -58,4 +58,24 @@ export async function GetPersonImage(id : number): Promise<PersonImageType | nul
         console.log(err);
     }
     return null;
+}
+
+
+// returns next, prev pages lists
+export function getPages(cur: number, total: number): {next: number[], prev: number[]} { 
+    let next: number[] = [] 
+    let prev: number[] = [] 
+
+    for (let i = cur+1; i < cur+3; i++ ) { 
+        
+        if (i < total) { 
+            next.push(i);
+        }
+    }
+    for (let i = cur-1; i > cur-3; i-- ) { 
+        if (i > 0) { 
+            prev.push(i);
+        }
+    }
+    return {next: next, prev: prev};
 }
