@@ -2,6 +2,7 @@ import { Star } from "../../../icons/Star";
 import styles from "./Movie.module.css";
 import LikeButton from "../../Buttons/LikeButton/LikeButton";
 import TabButton from "../../Buttons/TabButton/TabButton";
+import { useNavigate } from "react-router-dom";
 
 export type MovieType = {
 	adult: boolean;
@@ -22,10 +23,12 @@ export type MovieType = {
 
 export default function MovieCompact({ movieData }: { movieData: MovieType }) {
 	const imgURL = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`;
+
+    const navigate = useNavigate();
 	return (
 		<div className={styles.container}>
-			<div>
-				<img src={imgURL} alt={`${movieData.title} poster`} />
+			<div onClick={()=> navigate(`${movieData.id}`)} className={styles.imgContainer}>
+				<img onLoad={()=>{console.log("LOADED")}} src={imgURL} alt={`${movieData.title} poster`} />
 			</div>
 
 			<div className={styles.textCon}>

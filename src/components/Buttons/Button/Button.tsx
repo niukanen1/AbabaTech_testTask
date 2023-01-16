@@ -7,11 +7,12 @@ type ButtonProps = {
     border?: boolean;
     filled? : boolean
     isSubmit?: boolean 
+    isDisabled?: boolean
 
 
 }
 
-export default function Button({children, action, border=false, filled=false, isSubmit=false} : ButtonProps & PropsWithChildren) {
+export default function Button({children, action, border=false, filled=false, isSubmit=false, isDisabled=false} : ButtonProps & PropsWithChildren) {
     let style = [styles.button]
     if(border){
         style.push(styles.border)
@@ -19,9 +20,12 @@ export default function Button({children, action, border=false, filled=false, is
     if(filled){
         style.push(styles.filled)
     }
+    if (isDisabled) { 
+        style.push(styles.disabled)
+    }
     
     return ( 
-        <button type={isSubmit ? "submit" : undefined} className={style.join(' ')} onClick={action}>
+        <button disabled={isDisabled} type={isSubmit ? "submit" : undefined} className={style.join(' ')} onClick={action}>
             {children}
         </button>
     )

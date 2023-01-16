@@ -18,7 +18,7 @@ export default function MovieList({movieList, isLoading} : MovieListProps) {
 			) : (
 				<div className={styles.container_vertical}>
 					{movieList?.map((movie) => (
-						<div key={movie.id} onClick={()=> navigate(`${movie.id}`)}>
+						<div key={movie.id} >
 							<MovieCompact movieData={movie} />
 						</div>
 					))}

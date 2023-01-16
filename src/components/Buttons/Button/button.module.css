@@ -22,6 +22,18 @@
     border: 1px black solid;
 }
 
+button[disabled] { 
+    background-color: #dedede;
+}
+button[disabled]:hover{ 
+    background-color: #dedede;
+}
+button[disabled]:active {
+    transform: none;
+    box-shadow: none;
+}
+
+
 .filled{
     background-color: #3c5cd3;;
     color: white;

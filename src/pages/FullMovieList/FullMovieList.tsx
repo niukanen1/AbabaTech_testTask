@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Buttons/Button/Button";
 import { MovieType } from "../../components/Movies/MovieCompact/MovieCompact";
 import MovieList from "../../components/Movies/MovieList/MovieList";
@@ -7,13 +8,17 @@ import { GetLatestCompactMovies, getPages, MovieSortType } from "../../component
 import styles from "./FullMovieList.module.css";
 
 export function FullMovieList() {
+    const {pageId} = useParams();
 	const [isLoading, setIsLoading] = useState(false);
 	const [movieList, setMovieList] = useState<MovieType[]>([]);
     const [pages, setPages] = useState<{cur: number, total: number}>({cur: 0, total: 0});
 
+    const navigate = useNavigate(); 
+    const location = useLocation();
+
 	useEffect(() => {
 		setIsLoading(true);
-		GetLatestCompactMovies(1, MovieSortType.popular).then((response) => {
+		GetLatestCompactMovies(parseInt(pageId as string), MovieSortType.popular).then((response) => {
             if (!response) { 
                 alert("Failed to fetch movies");
             }
@@ -26,12 +31,12 @@ export function FullMovieList() {
             }); 
 
 		});
-	}, []);
+	}, [location.pathname]);
 
 	return (
 		<main className={styles.mainContainer}>
 			<MovieList movieList={movieList} isLoading={isLoading} />
-			<PageControls pages={pages}/>
+			<PageControls goToPage={(pageNum) => navigate(`/movies/${pageNum}`) } pages={pages}/>
 		</main>
 	);
 }

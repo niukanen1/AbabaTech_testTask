@@ -13,6 +13,7 @@
     position: relative;
     width: calc(40px/var(--size));
     height: calc(32px/var(--size));
+    cursor: pointer;
 }
 .heartLikeButton:before {
     position: absolute;

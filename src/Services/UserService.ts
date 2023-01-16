@@ -26,3 +26,15 @@ export async function LogRegUser(isLogin: boolean, user: User) {
 		alert((err as Error).message);
 	}
 }
+
+export async function LogOut() { 
+    try { 
+        const response = await fetch(queries_URLs.logout.url, { 
+            method: queries_URLs.logout.method, 
+            credentials: "include"
+        })
+        return response.json(); 
+    } catch(err) { 
+        alert((err as Error).message)
+    }
+}

@@ -13,6 +13,10 @@ export const queries_URLs = {
         url: "https://ababa-tech-test-task.onrender.com/register",
         method: "POST"
     },
+    logout: { 
+        url: "https://ababa-tech-test-task.onrender.com/protected/logout", 
+        method: "POST"
+    },
     addFavoriteMovie: { 
         url: "https://ababa-tech-test-task.onrender.com/protected/addFavoriteMovie",
         method: "POST"

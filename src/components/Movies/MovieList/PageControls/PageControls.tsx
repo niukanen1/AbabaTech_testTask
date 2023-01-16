@@ -4,28 +4,37 @@ import styles from "./PageControls.module.css";
 
 type PageControlProps = {
 	pages: { cur: number; total: number };
+    goToPage: (pageNum: number) => void;
 };
 
-export function PageControls({ pages }: PageControlProps) {
+export function PageControls({ pages, goToPage }: PageControlProps) {
 	const { next, prev } = getPages(pages.cur, pages.total);
 
 	return (
 		<div className={styles.container}>
-			<Button action={() => {}}>{"<"}</Button>
+			<Button isDisabled={prev.length == 0} action={() => {
+                console.log("prev");
+                console.log(prev);
+                goToPage(prev[0])
+            }}>{"<"}</Button>
 			<div className={styles.container}>
 				<div>
-					{prev.map((page) => (
-						<Button action={() => {}}>{page}</Button>
+					{prev.reverse().map((page) => (
+						<Button action={() => {goToPage(page)}}>{page}</Button>
 					))}
 				</div>
-				<Button action={() => {}}>{pages.cur}</Button>
+				<Button isDisabled action={() => {}}>{pages.cur}</Button>
 				<div>
 					{next.map((page) => (
-						<Button action={() => {}}>{page}</Button>
+						<Button action={() => {
+                            console.log("next");
+                            console.log(next);
+                            goToPage(page)
+                        }}>{page}</Button>
 					))}
 				</div>
 			</div>
-			<Button action={() => {}}>{">"}</Button>
+			<Button isDisabled={next.length == 0} action={() => {goToPage(next[0])}}>{">"}</Button>
 		</div>
 	);
 }

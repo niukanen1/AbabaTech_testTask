@@ -15,6 +15,7 @@ export type RegistrationFormProps = {
 };
 function RegistrationForm({ modalType, changeModalType, closeModal }: RegistrationFormProps) {
 	const [userData, setUserData] = useState({ email: "", password: "" });
+    const [loading, setLoading] = useState<boolean>(false);
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -63,7 +64,7 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
 					}}
 				/>
 				<Button isSubmit filled action={() => {}}>
-					{modalType == ModalType.login ? "Log In" : "Sign Up"}
+                    {loading ? <p>Loading</p> : modalType == ModalType.login ? "Log In" : "Sign Up"}
 				</Button>
 			</form>
 			{modalType == ModalType.login ? (
