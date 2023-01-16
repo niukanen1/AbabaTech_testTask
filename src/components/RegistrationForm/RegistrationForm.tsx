@@ -23,6 +23,8 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
         if (modalType == ModalType.login) { 
             loginUser = true
         }
+        console.log("USERDATA")
+        console.log(userData);
 		const response: Response | undefined = await LogRegUser(loginUser, userData);
 		if (response == undefined) {
 			alert("Something went wrong");

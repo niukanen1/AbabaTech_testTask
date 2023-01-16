@@ -7,10 +7,12 @@ export type Response = {
 export const queries_URLs = { 
     loginUser: { 
         url: "https://ababa-tech-test-task.onrender.com/login",
+        // url:"http://localhost:4000/login",
         method: "POST"
     }, 
     registerUser: {
         url: "https://ababa-tech-test-task.onrender.com/register",
+        // url:"http://localhost:4000/register",
         method: "POST"
     },
     logout: { 
