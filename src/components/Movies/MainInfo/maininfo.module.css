@@ -1,0 +1,35 @@
+.mainInfo{
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.item:nth-child(odd){
+    width: calc(60% - 10px);
+}
+.item{
+    display: flex;
+    flex-direction: row;
+    width: calc(40% - 10px);
+    margin: 5px;
+
+    align-items: center;
+}
+
+.icon{
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.value{
+    display: flex;
+    color: #2C2C2C;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.item:nth-child(odd) .value{
+    font-size: 10px !important;
+}

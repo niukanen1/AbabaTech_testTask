@@ -1,6 +1,6 @@
 
 import styles from './horizontallist.module.css'
-import {PersonType} from "../Movies/MovieService";
+import {Cast, Crew} from "../Movies/MovieService";
 import {MovieType} from "../Movies/MovieCompact/MovieCompact";
 import {type} from "os";
 import PersonCard from "../Movies/MovieCards/PersonCard/PersonCard";
@@ -8,14 +8,15 @@ import MovieCard from "../Movies/MovieCards/MovieCard/MovieCard";
 
 type HorizontalListProps = {
 
-    Persons?: PersonType[];
+    Actors?: Cast[];
+    Crew?: Crew[],
     Movies?: MovieType[]
 
 }
 
-export default function HorizontalList({Persons, Movies} : HorizontalListProps ) {
+export default function HorizontalList({Actors, Crew, Movies} : HorizontalListProps ) {
 
-    if (!Persons && !Movies){
+    if (!Actors && !Crew && !Movies){
         return (
             <></>
         )
@@ -23,10 +24,14 @@ export default function HorizontalList({Persons, Movies} : HorizontalListProps )
     return ( 
         <div className={styles.list}>
             {
-                Persons ?
-                   Persons.map((el) => (<div key={el.id} className={styles.item}><PersonCard Person={el}/></div>))
-                    :
+                Movies ?
                     Movies?.map((el) => (<div key={el.id} className={styles.item}><MovieCard Movie={el}/></div>))
+                    :
+                    (Actors ?
+                            Actors.map((el) => (<div key={el.id} className={styles.item}><PersonCard Actor={el}/></div>))
+                        :
+                            Crew?.map((el) => (<div key={el.id} className={styles.item}><PersonCard CrewMan={el}/></div>))
+                    )
             }
         </div>
     )

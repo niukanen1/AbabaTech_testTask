@@ -3,6 +3,7 @@
     max-width: 1000px;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: auto;
 }
 
 .main article{
@@ -11,21 +12,73 @@
     margin: 10px;
 }
 
-.movieDescription{
-    width: calc(70% - 40px);
-    min-height: 100px;
-    min-width: 100px;
 
+
+.movieDescription{
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(70% - 40px - 40px);
+    min-height: 400px;
+    padding: 20px;
+}
+
+.mainPoster{
+    width: 200px;
+    border-radius: 10px;
+}
+
+.mainDescription{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: #2C2C2C;
+    width: calc(100% - 240px);
+}
+
+
+.movieTitle{
+    all:unset;
+    text-align: start;
+    font-weight: 600;
+    font-size: 30px;
+
+}
+
+.originalMovieTitle{
+    padding-left: 10px;
+    text-align: start;
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.tagline{
+    margin-top: 2px;
+    padding-left: 10px;
+    text-align: start;
+    font-weight: 300;
+    font-size: 12px;
+    color: #898989;
+}
+
+.overview{
+    width: 100%;
+    text-align: start;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.genres{
+    width: 100px;
 }
 
 .peopleInMovie{
     width: 30%;
-    min-height: 100px;
-    min-width: 100px;
 }
 
 .recommendation{
     width: 100%;
-    min-height: 100px;
+    min-height: 200px;
     min-width: 100px;
 }
