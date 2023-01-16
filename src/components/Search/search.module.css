@@ -1,0 +1,31 @@
+.searchContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 400px;
+}
+
+.searchLine{
+    all:unset;
+    border-radius: 20px;
+    border: none;
+    padding: 0 20px;
+    text-align: start;
+    height: 30px;
+    width: calc(100% - 40px);
+    background-color: white;
+}
+
+.searchLine::placeholder{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #959595;
+}
+
+.rangeSlider{
+
+    box-shadow: none !important;
+    border: none !important;
+}
+

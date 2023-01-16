@@ -11,6 +11,7 @@ import {
 import MainInfo from "../../components/Movies/MainInfo/MainInfo";
 import Genres from "../../components/Movies/Genres/Genres";
 import HorizontalList from "../../components/HorizontalList/HorizontalList";
+import {MovieType} from "../../components/Movies/MovieCompact/MovieCompact";
 
 export function Movie() {
     const [MovieDetails, setMoviesDetails] = useState<MovieDetails | null>(null)
@@ -45,10 +46,12 @@ export function Movie() {
                             <MainInfo MovieDetails={MovieDetails}/>
                         </div>
                         <div className={styles.mainDescription}>
-                            <h1 className={styles.movieTitle}>{MovieDetails.title}</h1>
-                            <span className={styles.originalMovieTitle}>{MovieDetails.original_title}</span>
-                            <span className={styles.tagline}>{MovieDetails.tagline}</span>
-                            <p className={styles.overview}>{MovieDetails.overview}</p>
+                            <div className={styles.mainTetx}>
+                                <h1 className={styles.movieTitle}>{MovieDetails.title}</h1>
+                                <span className={styles.originalMovieTitle}>{MovieDetails.original_title}</span>
+                                <span className={styles.tagline}>{MovieDetails.tagline}</span>
+                                <p className={styles.overview}>{MovieDetails.overview}</p>
+                            </div>
                             <Genres MovieGenres={MovieDetails.genres}/>
                         </div>
 
@@ -65,12 +68,14 @@ export function Movie() {
                 {PeopleInMovie ?
                     (
                         <>
+                            <h2 className={styles.peopleHeader}>Cast</h2>
                             <div className={styles.listOfPeople}>
-                                <h2>Cast</h2>
                                 <HorizontalList Actors={PeopleInMovie.cast}/>
                             </div>
+
+                            <h2 className={styles.peopleHeader}>Crew</h2>
                             <div className={styles.listOfPeople}>
-                                <h2>Cast</h2>
+
                                 <HorizontalList Crew={PeopleInMovie.crew}/>
                             </div>
                         </>
@@ -86,7 +91,10 @@ export function Movie() {
                 {MovieRecommendations ?
                     (
                         <>
-
+                            <h2 className={styles.recommendationHeader}>You should watch</h2>
+                            <div className={styles.listOfMovies}>
+                                <HorizontalList Movies={MovieRecommendations.results as unknown as MovieType[]}/>
+                            </div>
                         </>
                     )
                     :

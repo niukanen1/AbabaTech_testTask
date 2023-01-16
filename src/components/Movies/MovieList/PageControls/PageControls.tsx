@@ -20,17 +20,21 @@ export function PageControls({ pages, goToPage }: PageControlProps) {
 			<div className={styles.container}>
 				<div>
 					{prev.reverse().map((page) => (
-						<Button action={() => {goToPage(page)}}>{page}</Button>
+						<div key={page}>
+							<Button action={() => {goToPage(page)}}>{page}</Button>
+						</div>
 					))}
 				</div>
 				<Button isDisabled action={() => {}}>{pages.cur}</Button>
 				<div>
 					{next.map((page) => (
-						<Button action={() => {
-                            console.log("next");
-                            console.log(next);
-                            goToPage(page)
-                        }}>{page}</Button>
+						<div key={page}>
+							<Button action={() => {
+								console.log("next");
+								console.log(next);
+								goToPage(page)
+							}}>{page}</Button>
+						</div>
 					))}
 				</div>
 			</div>
