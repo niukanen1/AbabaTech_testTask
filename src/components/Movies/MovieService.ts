@@ -97,6 +97,30 @@ export type MovieRecommendations = {
     total_results?: number,
 }
 
+export type MovieFromSearch = {
+    poster_path: string;
+    adult: boolean;
+    overview: string;
+    release_date: string;
+    genre_ids: number[];
+    id: number;
+    original_title: string;
+    original_language: string;
+    title: string;
+    backdrop_path: string;
+    popularity: number;
+    vote_count: number;
+    video: boolean;
+    vote_average: number;
+}
+
+export type SearchResult = {
+    page: number;
+    results: MovieFromSearch[];
+    total_results: number;
+    total_pages: number;
+}
+
 
 export type Cast = {
     adult: boolean;
@@ -191,6 +215,17 @@ export async function GetRecommendations(id : number): Promise<MovieRecommendati
 
 export async function GetPeopleInMovie(id : number): Promise<PeopleInMovie | null> {
     const queryURL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_TMDB_API}`;
+    try {
+        const response = await fetch(queryURL)
+        return await response.json()
+    } catch (err) {
+        console.log(err);
+    }
+    return null;
+}
+
+export async function GetSearchResults(query : string): Promise<SearchResult | null> {
+    const queryURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API}&query=${query.split(" ").join("%20")}`;
     try {
         const response = await fetch(queryURL)
         return await response.json()
