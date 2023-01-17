@@ -4,8 +4,8 @@ export type Response = {
     data: any;
 }
 
-const baseURL = process.env.production ? "https://ababa-tech-test-task.onrender.com" : "http://localhost:4000"
-
+const baseURL = process.env.REACT_APP_PRODUCTION_CONFIG ? "https://ababa-tech-test-task.onrender.com" : "http://localhost:4000"
+console.log(process.env.REACT_APP_PRODUCTION_CONFIG)
 export const queries_URLs = { 
     loginUser: { 
         url: baseURL + "/login",
