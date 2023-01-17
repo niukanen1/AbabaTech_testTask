@@ -4,40 +4,39 @@ export type Response = {
     data: any;
 }
 
+const baseURL = process.env.production ? "https://ababa-tech-test-task.onrender.com" : "http://localhost:4000"
+
 export const queries_URLs = { 
     loginUser: { 
-        url: "https://ababa-tech-test-task.onrender.com/login",
-        // url:"http://localhost:4000/login",
+        url: baseURL + "/login",
         method: "POST"
     }, 
     registerUser: {
-        url: "https://ababa-tech-test-task.onrender.com/register",
-        // url:"http://localhost:4000/register",
+        url: baseURL + "/register",
         method: "POST"
     },
     logout: { 
-        url: "https://ababa-tech-test-task.onrender.com/protected/logout", 
-        // url:"http://localhost:4000/protected/logout",
+        url: baseURL + "/logout",
         method: "POST"
     },
     addFavoriteMovie: { 
-        url: "https://ababa-tech-test-task.onrender.com/protected/addFavoriteMovie",
+        url: baseURL + "/protected/addFavoriteMovie",
         method: "POST"
     }, 
     deleteFavoriteMovie: { 
-        url: "https://ababa-tech-test-task.onrender.com/protected/deleteFavoriteMovie",
+        url: baseURL + "/protected/deleteFavoriteMovie",
         method: "POST"
     },
     addWatchLaterMovie: { 
-        url: "https://ababa-tech-test-task.onrender.com/protected/addWatchLaterMovie",
+        url: baseURL + "/protected/addWatchLaterMovie",
         method: "POST"
     }, 
     deleteWatchLaterMovie: { 
-        url: "https://ababa-tech-test-task.onrender.com/protected/deleteWatchLater",
+        url: baseURL + "/protected/deleteWatchLater",
         method: "POST"
     }, 
     getUserInfo: { 
-        url: "https://ababa-tech-test-task.onrender.com/protected/getUserInfo",
+        url: baseURL + "/protected/getUserInfo",
         method: "GET"
     }
 }
