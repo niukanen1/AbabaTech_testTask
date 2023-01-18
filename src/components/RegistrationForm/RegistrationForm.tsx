@@ -23,18 +23,21 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
         if (modalType == ModalType.login) { 
             loginUser = true
         }
+        console.log("USERDATA")
+        console.log(userData);
 		const response: Response | undefined = await LogRegUser(loginUser, userData);
 		if (response == undefined) {
 			alert("Something went wrong");
             closeModal();
             return 
 		}
-        alert(response.message); 
+        
         if (response.success) { 
             AppStore.setIsLoggedIn(true);
             console.log(response.message);
             console.log(AppStore.userData)
         }
+        alert(response.message); 
         closeModal();
 	};
 

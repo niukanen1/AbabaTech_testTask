@@ -15,7 +15,6 @@ export default function TextInput({ placeholder, onChange, isSecure=false }: Tex
 				placeholder='&nbsp;'
 				type={isSecure ? "password" : "text"}
 				onChange={(e) => {
-					console.log(e.currentTarget.value);
 					onChange(e.currentTarget.value);
 				}}
 			/>
