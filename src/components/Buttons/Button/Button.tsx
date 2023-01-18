@@ -1,7 +1,6 @@
 import {PropsWithChildren} from "react";
 import styles from './button.module.css'
 
-
 type ButtonProps = { 
     action: () => void;
     border?: boolean;
@@ -11,6 +10,9 @@ type ButtonProps = {
 
 
 }
+
+
+
 
 export default function Button({children, action, border=false, filled=false, isSubmit=false, isDisabled=false} : ButtonProps & PropsWithChildren) {
     let style = [styles.button]
