@@ -1,4 +1,5 @@
-import { queries_URLs } from "./../Queries/GetPostQueries";
+import AppStore from "../Stores/AppStore";
+import { queries, QueryFetch, Response } from "./../Queries/GetPostQueries";
 export type User = {
 	_id?: string;
 	email: string;
@@ -8,49 +9,52 @@ export type User = {
 };
 
 export async function LogRegUser(isLogin: boolean, user: User) {
-	console.log("User to reg");
-	console.log(JSON.stringify(user));
+	let queryOption = isLogin ? queries.loginUser : queries.registerUser;
 	try {
-		if (isLogin) {
-			const response = await fetch(queries_URLs.loginUser.url, {
-				headers: {
-					"Accept": "application/json",
-					"Content-Type": "application/json",
-				},
-				method: queries_URLs.loginUser.method,
-				body: JSON.stringify(user),
-				credentials: "include",
-			});
-			return response.json();
-		} else {
-			const response = await fetch(queries_URLs.registerUser.url, {
-                headers: {
-					"Accept": "application/json",
-					"Content-Type": "application/json",
-				},
-				method: queries_URLs.registerUser.method,
-				body: JSON.stringify(user),
-				credentials: "include",
-			});
-			return response.json();
-		}
+		await QueryFetch(queryOption, { body: user }, (response) => {
+            console.log(response)
+			if (!response.success) {
+				alert(response.message);
+			} else {
+				AppStore.setIsLoggedIn(true);
+				AppStore.setUserData(user);
+			}
+		});
 	} catch (err) {
 		alert((err as Error).message);
 	}
 }
 
 export async function LogOut() {
-	try {
-		const response = await fetch(queries_URLs.logout.url, {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-			method: queries_URLs.logout.method,
-			credentials: "include",
-		});
-		return response.json();
-	} catch (err) {
-		alert((err as Error).message);
-	}
+	await QueryFetch(queries.logout, {}, (response) => {
+		console.log(response);
+		if (response.success) {
+			AppStore.setIsLoggedIn(false);
+		}
+	});
+}
+
+// export async function GetUserData() {
+// }
+
+export async function CheckIfLoggedIn() {
+	await QueryFetch(queries.checkIfLoggedIn, {}, (response) => {
+		if (response.success) {
+			AppStore.setIsLoggedIn(true);
+		}
+		if (response.jwtExpired) {
+			AppStore.setIsLoggedIn(false);
+		}
+	});
+	// try {
+	// 	const response = await fetch(queries.checkIfLoggedIn.url, queries.checkIfLoggedIn.options);
+	// 	const responseObj: Response = await response.json();
+	// 	if (!responseObj.success) {
+	// 		alert(responseObj.message);
+	// 		return;
+	// 	}
+	// 	completion(responseObj.data);
+	// } catch (err) {
+	// 	alert((err as Error).message);
+	// }
 }

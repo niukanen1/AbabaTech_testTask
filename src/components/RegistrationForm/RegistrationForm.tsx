@@ -20,31 +20,20 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
         let loginUser: boolean = false 
-        if (modalType == ModalType.login) { 
+        if (modalType === ModalType.login) { 
             loginUser = true
         }
-        console.log("USERDATA")
-        console.log(userData);
-		const response: Response | undefined = await LogRegUser(loginUser, userData);
-		if (response == undefined) {
-			alert("Something went wrong");
+		await LogRegUser(loginUser, userData);
+        if (AppStore.userData.isLoggedIn) { 
             closeModal();
-            return 
-		}
-        
-        if (response.success) { 
-            AppStore.setIsLoggedIn(true);
-            console.log(response.message);
-            console.log(AppStore.userData)
         }
-        alert(response.message); 
-        closeModal();
+        
 	};
 
 
 	return (
 		<div className={styles.container}>
-			<h1>{modalType == ModalType.login ? "Welcome back" : "Welcome"}</h1>
+			<h1>{modalType === ModalType.login ? "Welcome back" : "Welcome"}</h1>
 			<form onSubmit={handleSubmit}>
 				<TextInput
 					placeholder='Email'
@@ -68,10 +57,10 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
 					}}
 				/>
 				<Button isSubmit filled action={() => {}}>
-                    {loading ? <p>Loading</p> : modalType == ModalType.login ? "Log In" : "Sign Up"}
+                    {loading ? <p>Loading</p> : modalType === ModalType.login ? "Log In" : "Sign Up"}
 				</Button>
 			</form>
-			{modalType == ModalType.login ? (
+			{modalType === ModalType.login ? (
 				<p className={styles.bottom_text}>
 					Don't have an account?{" "}
 					<span

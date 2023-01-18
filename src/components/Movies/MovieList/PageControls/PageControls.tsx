@@ -12,7 +12,7 @@ export function PageControls({ pages, goToPage }: PageControlProps) {
 
 	return (
 		<div className={styles.container}>
-			<Button isDisabled={prev.length == 0} action={() => {
+			<Button isDisabled={prev.length === 0} action={() => {
                 console.log("prev");
                 console.log(prev);
                 goToPage(prev[0])
@@ -38,7 +38,7 @@ export function PageControls({ pages, goToPage }: PageControlProps) {
 					))}
 				</div>
 			</div>
-			<Button isDisabled={next.length == 0} action={() => {goToPage(next[0])}}>{">"}</Button>
+			<Button isDisabled={next.length === 0} action={() => {goToPage(next[0])}}>{">"}</Button>
 		</div>
 	);
 }
