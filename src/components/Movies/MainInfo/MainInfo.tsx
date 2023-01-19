@@ -1,5 +1,4 @@
 import styles from "./maininfo.module.css";
-import React, { useEffect, useState } from "react";
 import { MovieDetails } from "../MovieService";
 
 type MainInfoProps = {

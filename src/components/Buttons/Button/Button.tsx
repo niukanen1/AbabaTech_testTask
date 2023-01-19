@@ -23,14 +23,14 @@ export default function Button({
     filled = false,
     isSubmit = false,
     isDisabled = false,
-    size = 1,
+    size = Size.Small,
 }: ButtonProps & PropsWithChildren) {
     let style = [styles.button];
     switch (size) {
-        case 2:
+        case Size.Medium:
             style.push(styles.mediumSize);
             break;
-        case 3:
+        case Size.Large:
             style.push(styles.largeSize);
     }
 
