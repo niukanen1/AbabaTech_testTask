@@ -5,8 +5,8 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import styles from "./Header.module.css";
-import { LogOut } from "../../Services/UserService";
-import { Response } from "../../Queries/GetPostQueries";
+import { CheckIfLoggedIn, LogOut } from "../../Services/UserService";
+import { queries, QueryFetch, Response } from "../../Queries/GetPostQueries";
 
 export enum ModalType {
 	login = 0,
@@ -15,19 +15,11 @@ export enum ModalType {
 
 function Header() {
 	const [showModal, setShowModal] = useState<boolean>(false);
-	const [modalType, setModalType] = useState<ModalType>(ModalType.signup);
+	const [modalType, setModalType] = useState<ModalType>(ModalType.login);
 
 
     const handleLogOut = async () => {
-        const response: Response | undefined = await LogOut(); 
-        if (!response) { 
-            alert("Something went wrong")
-            return 
-        } 
-        if (response.success) { 
-            AppStore.setIsLoggedIn(false);
-        }
-        alert(response.message);
+        await LogOut();
     }
 
 	return (
@@ -40,7 +32,14 @@ function Header() {
                 <li>
                 </li>
 				<li>
-					{AppStore.userData.isLoggedIn ? <Button action={() => {}}>Profile</Button> : <></>}
+					{AppStore.userData.isLoggedIn ? <Button action={async () => {
+                        await QueryFetch(queries.getUserInfo, {}, (response) => {
+                            if (response.success) { 
+                                AppStore.setUserData(response.data);
+                            }
+                            // TODO add error handling
+                        })
+                    }}>Profile</Button> : <></>}
 					{AppStore.userData.isLoggedIn ? (
 						<Button action={()=>handleLogOut()}>Log Out</Button>
 					) : (

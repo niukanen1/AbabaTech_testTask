@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import Button from "../../components/Buttons/Button/Button";
 import { MovieType } from "../../components/Movies/MovieCompact/MovieCompact";
 import MovieList from "../../components/Movies/MovieList/MovieList";
 import { PageControls } from "../../components/Movies/MovieList/PageControls/PageControls";
 import {
 	GetLatestCompactMovies,
-	GetMovieDetails,
-	getPages,
 	GetSearchResults,
 	MovieSortType
 } from "../../components/Movies/MovieService";

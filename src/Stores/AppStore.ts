@@ -10,6 +10,11 @@ class AppStore {
         isLoggedIn: false, 
         user: null,
     }
+    isLoading = false; 
+
+    setLoader(value: boolean) { 
+        this.isLoading = value;
+    }
 
     setIsLoggedIn(newValue: boolean) { 
         this.userData.isLoggedIn = newValue; 

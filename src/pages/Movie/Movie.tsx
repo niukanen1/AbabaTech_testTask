@@ -4,7 +4,6 @@ import styles from './movie.module.css'
 import {
     GetMovieDetails,
     GetPeopleInMovie,
-    GetPersonImage,
     GetRecommendations,
     MovieDetails, MovieRecommendations, PeopleInMovie
 } from "../../components/Movies/MovieService";
