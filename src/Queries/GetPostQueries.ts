@@ -37,7 +37,7 @@ export const queries = {
 	addFavoriteMovie: new QueryOptions(baseURL+"/protected/movies/addFavoriteMovie", "POST"),
 	deleteFavoriteMovie: new QueryOptions(baseURL+"/protected/movies/deleteFavoriteMovie", "POST"),
 	addWatchLaterMovie: new QueryOptions(baseURL+"/protected/movies/addWatchLaterMovie", "POST"),
-	deleteWatchLaterMovie: new QueryOptions(baseURL+"/protected/movies/deleteWatchLater", "POST"),
+	deleteWatchLaterMovie: new QueryOptions(baseURL+"/protected/movies/deleteWatchLaterMovie", "POST"),
     checkIfLoggedIn: new QueryOptions(baseURL+"/protected/user/checkIfLoggedIn", "POST"),
 	getUserInfo: new QueryOptions(baseURL+"/protected/user/getUserInfo", "GET"),
 };
