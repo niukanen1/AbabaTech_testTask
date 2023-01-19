@@ -1,35 +1,57 @@
-import {PropsWithChildren} from "react";
-import styles from './button.module.css'
+import { PropsWithChildren } from "react";
+import styles from "./button.module.css";
 
-type ButtonProps = { 
+enum Size {
+    Small = 1,
+    Medium,
+    Large,
+}
+
+type ButtonProps = {
     action: () => void;
     border?: boolean;
-    filled? : boolean
-    isSubmit?: boolean 
-    isDisabled?: boolean
+    filled?: boolean;
+    isSubmit?: boolean;
+    isDisabled?: boolean;
+    size?: number;
+};
 
-
-}
-
-
-
-
-export default function Button({children, action, border=false, filled=false, isSubmit=false, isDisabled=false} : ButtonProps & PropsWithChildren) {
-    let style = [styles.button]
-    if(border){
-        style.push(styles.border)
+export default function Button({
+    children,
+    action,
+    border = false,
+    filled = false,
+    isSubmit = false,
+    isDisabled = false,
+    size = 1,
+}: ButtonProps & PropsWithChildren) {
+    let style = [styles.button];
+    switch (size) {
+        case 2:
+            style.push(styles.mediumSize);
+            break;
+        case 3:
+            style.push(styles.largeSize);
     }
-    if(filled){
-        style.push(styles.filled)
+
+    if (border) {
+        style.push(styles.border);
     }
-    if (isDisabled) { 
-        style.push(styles.disabled)
+    if (filled) {
+        style.push(styles.filled);
     }
-    
-    return ( 
-        <button disabled={isDisabled} type={isSubmit ? "submit" : undefined} className={style.join(' ')} onClick={action}>
+    if (isDisabled) {
+        style.push(styles.disabled);
+    }
+
+    return (
+        <button
+            disabled={isDisabled}
+            type={isSubmit ? "submit" : undefined}
+            className={style.join(" ")}
+            onClick={action}
+        >
             {children}
         </button>
-    )
+    );
 }
-
