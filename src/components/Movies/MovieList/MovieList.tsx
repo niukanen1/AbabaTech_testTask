@@ -8,13 +8,18 @@ type MovieListProps = {
 
 export default function MovieList({movieList, isLoading} : MovieListProps) {
 
-
-    const navigate = useNavigate();
+    const emptyArray = Array.from(Array(20).keys());
 
 	return (
 		<>
 			{isLoading ? (
-				<p>Loading...</p>
+				<div className={styles.container_vertical}>
+                {emptyArray?.map((id) => (
+                    <div className={styles.fillerComponent} key={id} >
+
+                    </div>
+                ))}
+            </div>
 			) : (
 				<div className={styles.container_vertical}>
 					{movieList?.map((movie) => (

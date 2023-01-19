@@ -5,3 +5,11 @@
     justify-content: space-between;
     margin: 10px;
 }
+
+.fillerComponent { 
+    width: 400px;
+    height: 170px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: rgb(204, 204, 204);
+}

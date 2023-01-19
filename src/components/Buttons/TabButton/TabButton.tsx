@@ -1,27 +1,21 @@
 import {PropsWithChildren, useEffect, useRef, useState} from "react";
+import { ButtonProps } from "../LikeButton/LikeButton";
 import styles from './tabbutton.module.css'
 
 
-type ButtonProps = {
-    action: () => void;
-    filled? : boolean
 
-
-
-}
-
-export default function TabButton({action, filled=false} : ButtonProps) {
+export default function TabButton({action, filled=false, changeFilled} : ButtonProps) {
     const [style, setStyle] = useState([styles.TabImgButton])
-    const [Filled, setFilled] = useState(filled)
+    // const [Filled, setFilled] = useState(filled)
 
     function LikeAction(){
         action()
 
-        setFilled(!Filled)
+        changeFilled(!filled)
     }
 
     useEffect(() => {
-        if (Filled){
+        if (filled){
             if(!(styles.empty in style)){
                 setStyle([...style, styles. liked])
             }
@@ -30,7 +24,7 @@ export default function TabButton({action, filled=false} : ButtonProps) {
                 return element != styles.liked
             }))
         }
-    }, [Filled])
+    }, [filled])
 
     return (
         <button className={styles.TabButton} onClick={() => LikeAction()}>

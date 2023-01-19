@@ -13,6 +13,9 @@ function App() {
     useEffect(() => { 
         CheckIfLoggedIn()
     }, [])
+    useEffect(() => { 
+        console.log("USER DATA CHANGED")
+    }, [AppStore.userData.user?.favoriteMovies, AppStore.userData.user?.watchLaterMovies])
     return (
 		<div className='App'>
 			<Routes>

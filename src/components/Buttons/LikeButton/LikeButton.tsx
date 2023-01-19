@@ -2,26 +2,25 @@ import {PropsWithChildren, useEffect, useRef, useState} from "react";
 import styles from './likebutton.module.css'
 
 
-type ButtonProps = {
+export type ButtonProps = {
     action: () => void;
     filled? : boolean
-
+    changeFilled: (value: boolean)=>void
 
 
 }
 
-export default function LikeButton({action, filled=false} : ButtonProps) {
+export default function LikeButton({action, filled=false, changeFilled} : ButtonProps) {
     const [style, setStyle] = useState([styles.heartLikeButton])
-    const [Filled, setFilled] = useState(filled)
 
     function LikeAction(){
         action()
 
-        setFilled(!Filled)
+        changeFilled(!filled)
     }
 
     useEffect(() => {
-        if (Filled){
+        if (filled){
             if(!(styles.empty in style)){
                 setStyle([...style, styles. liked])
             }
@@ -30,7 +29,7 @@ export default function LikeButton({action, filled=false} : ButtonProps) {
                 return element != styles.liked
             }))
         }
-    }, [Filled])
+    }, [filled])
 
     return (
         <button className={styles.likeButton} onClick={() => LikeAction()}>

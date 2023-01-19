@@ -12,7 +12,6 @@ export async function LogRegUser(isLogin: boolean, user: User) {
 	let queryOption = isLogin ? queries.loginUser : queries.registerUser;
 	try {
 		await QueryFetch(queryOption, { body: user }, (response) => {
-            console.log(response)
 			if (!response.success) {
 				alert(response.message);
 			} else {
@@ -30,6 +29,10 @@ export async function LogOut() {
 		console.log(response);
 		if (response.success) {
 			AppStore.setIsLoggedIn(false);
+            AppStore.setUserData({
+                email: "",
+                password: ""
+            });
 		}
 	});
 }

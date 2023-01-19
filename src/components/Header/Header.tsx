@@ -15,7 +15,7 @@ export enum ModalType {
 
 function Header() {
 	const [showModal, setShowModal] = useState<boolean>(false);
-	const [modalType, setModalType] = useState<ModalType>(ModalType.signup);
+	const [modalType, setModalType] = useState<ModalType>(ModalType.login);
 
 
     const handleLogOut = async () => {
@@ -33,9 +33,11 @@ function Header() {
                 </li>
 				<li>
 					{AppStore.userData.isLoggedIn ? <Button action={async () => {
-                        await QueryFetch(queries.getUserInfo, {store: AppStore}, (response) => { 
-                            console.log("DATA")
-                            console.log(response.data)
+                        await QueryFetch(queries.getUserInfo, {}, (response) => {
+                            if (response.success) { 
+                                AppStore.setUserData(response.data);
+                            }
+                            // TODO add error handling
                         })
                     }}>Profile</Button> : <></>}
 					{AppStore.userData.isLoggedIn ? (

@@ -1,3 +1,4 @@
+import { User } from "../Services/UserService";
 import AppStore from "../Stores/AppStore";
 
 export type Response = {
@@ -33,40 +34,53 @@ export const queries = {
 	loginUser: new QueryOptions(baseURL+"/login", "POST"),
 	registerUser: new QueryOptions(baseURL+"/register", "POST"),
 	logout: new QueryOptions(baseURL+"/logout", "POST"),
-	addFavoriteMovie: new QueryOptions(baseURL+"/protected/addFavoriteMovie", "POST"),
-	deleteFavoriteMovie: new QueryOptions(baseURL+"/protected/deleteFavoriteMovie", "POST"),
-	addWatchLaterMovie: new QueryOptions(baseURL+"/protected/addWatchLaterMovie", "POST"),
-	deleteWatchLaterMovie: new QueryOptions(baseURL+"/protected/deleteWatchLater", "POST"),
+	addFavoriteMovie: new QueryOptions(baseURL+"/protected/movies/addFavoriteMovie", "POST"),
+	deleteFavoriteMovie: new QueryOptions(baseURL+"/protected/movies/deleteFavoriteMovie", "POST"),
+	addWatchLaterMovie: new QueryOptions(baseURL+"/protected/movies/addWatchLaterMovie", "POST"),
+	deleteWatchLaterMovie: new QueryOptions(baseURL+"/protected/movies/deleteWatchLater", "POST"),
     checkIfLoggedIn: new QueryOptions(baseURL+"/protected/user/checkIfLoggedIn", "POST"),
 	getUserInfo: new QueryOptions(baseURL+"/protected/user/getUserInfo", "GET"),
 };
 
 type QueryFetchOptions = { 
-    store?: typeof AppStore
     body?: any
+    activateFullScreenLoader?: boolean
+    getUserInfo?: boolean
 }
-export async function QueryFetch(queryOptions: QueryOptions, {store, body}: QueryFetchOptions, completion: (response: Response) => void) { 
+export async function QueryFetch(queryOptions: QueryOptions, { body, activateFullScreenLoader=true, getUserInfo=true}: QueryFetchOptions, completion: (response: Response) => void) { 
     const fetchOptions: RequestInit = { 
         ...queryOptions.options
     }
     if (queryOptions.options.method === "POST") { 
         fetchOptions.body = JSON.stringify(body)
     }
+
+    AppStore.setLoader(activateFullScreenLoader); 
     try {
 		const response = await fetch(queryOptions.url, fetchOptions);
         const formatedResponse: Response = await response.json();
 
         if (formatedResponse.jwtExpired) { 
             console.log("TOKEN EXPIRED")
-            store?.setIsLoggedIn(false)
-            store?.setUserData({
+            AppStore.setIsLoggedIn(false)
+            AppStore.setUserData({
                 email: "",
                 password: ""
             });
             return 
         }
+        if (formatedResponse.success && getUserInfo) { 
+            await QueryFetch(queries.getUserInfo, {getUserInfo: false}, (response) => {
+                if (response.success) { 
+                    AppStore.setUserData(response.data as User);
+                }
+            })
+        }
         completion(formatedResponse);
 	} catch (err) {
 		alert((err as Error).message);
 	}
+    finally { 
+        AppStore.setLoader(false); 
+    }
 }

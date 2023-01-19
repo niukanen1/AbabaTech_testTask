@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { FormEvent, useState } from "react";
 import { Response } from "../../Queries/GetPostQueries";
-import { LogRegUser } from "../../Services/UserService";
+import { CheckIfLoggedIn, LogRegUser } from "../../Services/UserService";
 import AppStore from "../../Stores/AppStore";
 import Button from "../Buttons/Button/Button";
 import TextInput from "../FormElements/TextInput/TextInput";
@@ -25,6 +25,7 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
         }
 		await LogRegUser(loginUser, userData);
         if (AppStore.userData.isLoggedIn) { 
+            await CheckIfLoggedIn();
             closeModal();
         }
         
