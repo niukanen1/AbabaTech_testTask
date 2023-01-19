@@ -2,7 +2,6 @@
 import styles from './horizontallist.module.css'
 import {Cast, Crew} from "../Movies/MovieService";
 import {MovieType} from "../Movies/MovieCompact/MovieCompact";
-import {type} from "os";
 import PersonCard from "../Movies/MovieCards/PersonCard/PersonCard";
 import MovieCard from "../Movies/MovieCards/MovieCard/MovieCard";
 

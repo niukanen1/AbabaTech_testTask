@@ -11,7 +11,7 @@ export default function MainInfo({ MovieDetails }: MainInfoProps) {
             {MovieDetails.release_date ? (
                 <div className={styles.item}>
                     <img
-                        src={"/calendar.svg"}
+                        src={"/Icons/calendar.svg"}
                         alt={""}
                         className={styles.icon}
                     />
@@ -25,7 +25,7 @@ export default function MainInfo({ MovieDetails }: MainInfoProps) {
 
             {MovieDetails.vote_average ? (
                 <div className={styles.item}>
-                    <img src={"/star.svg"} alt={""} className={styles.icon} />
+                    <img src={"/Icons/star.svg"} alt={""} className={styles.icon} />
                     <span className={styles.value}>
                         {MovieDetails.vote_average?.toString().slice(0, 3)}
                     </span>
@@ -36,7 +36,7 @@ export default function MainInfo({ MovieDetails }: MainInfoProps) {
 
             {MovieDetails.budget ? (
                 <div className={styles.item}>
-                    <img src={"/budget.svg"} alt={""} className={styles.icon} />
+                    <img src={"/Icons/budget.svg"} alt={""} className={styles.icon} />
                     <span className={styles.value}>
                         {MovieDetails.budget} $
                     </span>
@@ -48,7 +48,7 @@ export default function MainInfo({ MovieDetails }: MainInfoProps) {
             {MovieDetails.production_countries?.at(0)?.iso_3166_1 ? (
                 <div className={styles.item}>
                     <img
-                        src={"/country.svg"}
+                        src={"/Icons/country.svg"}
                         alt={""}
                         className={styles.icon}
                     />
@@ -65,7 +65,7 @@ export default function MainInfo({ MovieDetails }: MainInfoProps) {
             {MovieDetails.revenue ? (
                 <div className={styles.item}>
                     <img
-                        src={"/revenue.svg"}
+                        src={"/Icons/revenue.svg"}
                         alt={""}
                         className={styles.icon}
                     />
@@ -80,7 +80,7 @@ export default function MainInfo({ MovieDetails }: MainInfoProps) {
             {MovieDetails.runtime ? (
                 <div className={styles.item}>
                     <img
-                        src={"/duration.svg"}
+                        src={"/Icons/duration.svg"}
                         alt={""}
                         className={styles.icon}
                     />

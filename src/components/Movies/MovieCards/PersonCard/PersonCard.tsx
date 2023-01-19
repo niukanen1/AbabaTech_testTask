@@ -30,7 +30,7 @@ export default function PersonCard({Actor, CrewMan} : ButtonProps) {
         return (
             <a href={PersonDescLink} className={styles.link}>
                 <div className={styles.card} >
-                    <img src={PersonImageUrl ? PersonImageUrl : "/person.svg"} alt={""} className={styles.personImage}/>
+                    <img src={PersonImageUrl ? PersonImageUrl : "/Icons/person.svg"} alt={""} className={styles.personImage}/>
                     <span className={styles.whoIs}>{Actor ? Actor.character : CrewMan!.job}</span>
                     <span className={styles.name}>{(Actor ? Actor : CrewMan!).name}</span>
                 </div>
