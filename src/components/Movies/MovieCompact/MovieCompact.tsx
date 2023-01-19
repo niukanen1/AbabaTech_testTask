@@ -44,7 +44,8 @@ function MovieCompact({ movieData }: { movieData: MovieType }) {
     const manipulateMovie = async (manipulation: UserMoviesManipulationType) => { 
         const movieID = parseInt(movieData.id);
         await MovieManipulation(manipulation, movieID, (response) => { 
-            // console.log(response.message);
+            // if (response.success)
+            // TODO do not fill btn if request failed
         })
     }
 	return (
@@ -65,10 +66,14 @@ function MovieCompact({ movieData }: { movieData: MovieType }) {
 				<p className={styles.releaseDate}>{movieData.release_date}</p>
 			</div>
 			<div>
-				<LikeButton changeFilled={(value) => setIsFavorite(value)} filled={isFavorite} action={() => {
+				<LikeButton changeFilled={(value) => {
+                    if (AppStore.userData.isLoggedIn) setIsFavorite(value)
+                }} filled={isFavorite} action={() => {
                     manipulateMovie(isFavorite ? 'deleteFavoriteMovie' : 'addFavoriteMovie')  
                 }}/>
-				<TabButton changeFilled={(value) => setIsWatchLater(value)} filled={isWatchLater} action={() => {
+				<TabButton changeFilled={(value) => {
+                    if (AppStore.userData.isLoggedIn) setIsWatchLater(value)
+                }} filled={isWatchLater} action={() => {
                     manipulateMovie(isWatchLater ? 'deleteWatchLaterMovie' : 'addWatchLaterMovie');  
                 }}/>
 			</div>
