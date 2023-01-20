@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import styles from "./button.module.css";
 
+
 enum Size {
     Small = 1,
     Medium,

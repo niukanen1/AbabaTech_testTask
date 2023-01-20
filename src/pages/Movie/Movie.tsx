@@ -32,7 +32,7 @@ export function Movie() {
             });
         }
 
-    }, []);
+    }, [movieId]);
 
     return ( 
         <main className={styles.main}>

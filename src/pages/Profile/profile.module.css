@@ -1,0 +1,86 @@
+@media screen and (max-width : 700px) {
+    .profileInfo{
+        flex-direction: column !important;
+        align-items: center;
+    }
+    .textInfo{
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width : 500px) {
+    .userEmail{
+        width: 200px !important;
+    }
+
+}
+
+.main {
+    display: flex;
+    max-width: 1000px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.main article {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.profileInfo {
+    width: 100%;
+    padding: 30px;
+}
+
+.textInfo {
+    display: flex;
+    flex-direction: row;
+    color: #2c2c2c;
+}
+
+.h1 {
+    all: unset;
+    font-weight: 600;
+    font-size: 22px;
+    margin-right: 10px;
+    
+}
+
+.userEmail {
+    all: unset;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-wrap: break-word;
+    width: 300px;
+}
+
+.buttons *:first-child {
+    margin-right: 10px;
+}
+
+.films {
+    min-height: 500px;
+    width: 100%;
+    padding: 20px;
+}
+
+.films ul {
+    display: flex;
+    min-width: 300px;
+}
+
+.categoryOfMovie {
+    all: unset;
+    font-weight: 600;
+    font-size: 20px;
+    color: #2c2c2c;
+    display: flex;
+}
