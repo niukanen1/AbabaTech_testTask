@@ -27,9 +27,10 @@ function Header() {
 			<ul>
 				<li className={styles.logo}>Movies point</li>
 				<li>
-					<a href='/movies/1'>Movies</a>
+					<a href='/movies/1' className={styles.link}>Movies</a>
 				</li>
                 <li>
+				<a href='/profile'  className={styles.link}>Profile</a>
                 </li>
 				<li>
 					{AppStore.userData.isLoggedIn ? <Button action={async () => {
