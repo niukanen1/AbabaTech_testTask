@@ -10,28 +10,24 @@ export type User = {
 
 export async function LogRegUser(isLogin: boolean, user: User) {
 	let queryOption = isLogin ? queries.loginUser : queries.registerUser;
-	try {
-		await QueryFetch(queryOption, { body: user }, (response) => {
-			if (!response.success) {
-				alert(response.message);
-			} else {
-				AppStore.setIsLoggedIn(true);
-				AppStore.setUserData(user);
-			}
-		});
-	} catch (err) {
-		alert((err as Error).message);
-	}
+	await QueryFetch(queryOption, { body: user }, (response) => {
+		if (!response.success) {
+			// alert(response.message);
+		} else {
+			AppStore.setIsLoggedIn(true);
+			AppStore.setUserData(user);
+		}
+	});
 }
 
 export async function LogOut() {
-	await QueryFetch(queries.logout, {getUserInfo: false}, (response) => {
+	await QueryFetch(queries.logout, { getUserInfo: false }, (response) => {
 		if (response.success) {
 			AppStore.setIsLoggedIn(false);
-            AppStore.setUserData({
-                email: "",
-                password: ""
-            });
+			AppStore.setUserData({
+				email: "",
+				password: "",
+			});
 		}
 	});
 }
@@ -40,7 +36,7 @@ export async function LogOut() {
 // }
 
 export async function CheckIfLoggedIn() {
-	await QueryFetch(queries.checkIfLoggedIn, {displayToasts: AppStore.userData.isLoggedIn}, (response) => {
+	await QueryFetch(queries.checkIfLoggedIn, { displayToasts: AppStore.userData.isLoggedIn }, (response) => {
 		if (response.success) {
 			AppStore.setIsLoggedIn(true);
 		}

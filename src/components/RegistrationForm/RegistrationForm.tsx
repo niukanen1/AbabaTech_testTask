@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 import { Response } from "../../Queries/GetPostQueries";
 import { CheckIfLoggedIn, LogRegUser } from "../../Services/UserService";
 import AppStore from "../../Stores/AppStore";
-import Button from "../Buttons/Button/Button";
+import Button, { Size } from "../Buttons/Button/Button";
 import TextInput from "../FormElements/TextInput/TextInput";
 import { ModalType } from "../Header/Header";
 import Loader, { LoaderSize } from "../Loader/Loader";
@@ -27,6 +27,7 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
 		}
 		await LogRegUser(loginUser, userData);
 		if (AppStore.userData.isLoggedIn) {
+            AppStore.ShowConfetti(true);
 			await CheckIfLoggedIn();
 			closeModal();
 		}
@@ -61,7 +62,7 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
 				{loading ? (
 					<Loader size={LoaderSize.small} />
 				) : (
-					<Button isSubmit filled action={() => {}}>
+					<Button isSubmit size={Size.Large} filled action={() => {}}>
 						{modalType === ModalType.login ? "Log In" : "Sign Up"}
 					</Button>
 				)}
