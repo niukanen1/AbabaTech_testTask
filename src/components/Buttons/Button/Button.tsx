@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import styles from "./button.module.css";
 
 
-enum Size {
+export enum Size {
     Small = 1,
     Medium,
     Large,
@@ -14,7 +14,7 @@ type ButtonProps = {
     filled?: boolean;
     isSubmit?: boolean;
     isDisabled?: boolean;
-    size?: number;
+    size?: Size;
 };
 
 export default function Button({

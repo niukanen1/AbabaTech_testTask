@@ -7,16 +7,12 @@ import { Movie } from "./pages/Movie/Movie";
 import { useEffect } from "react";
 import { CheckIfLoggedIn } from "./Services/UserService";
 import { observer } from "mobx-react-lite";
-import AppStore from "./Stores/AppStore";
 import  Profile  from './pages/Profile/Profile';
 
 function App() {
     useEffect(() => { 
         CheckIfLoggedIn()
     }, [])
-    useEffect(() => { 
-        console.log("USER DATA CHANGED")
-    }, [AppStore.userData.user?.favoriteMovies, AppStore.userData.user?.watchLaterMovies])
     return (
 		<div className='App'>
 			<Routes>

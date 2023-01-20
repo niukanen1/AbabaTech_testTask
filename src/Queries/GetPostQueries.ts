@@ -19,7 +19,6 @@ const baseURL =
 	process.env.REACT_APP_PRODUCTION_CONFIG === "true"
 		? "https://ababa-tech-test-task.onrender.com"
 		: "http://localhost:4000";
-console.log(baseURL);
 
 class QueryOptions {
 	url: string;
@@ -61,14 +60,12 @@ export async function QueryFetch(queryOptions: QueryOptions, { body, getUserInfo
     if (queryOptions.options.method === "POST") { 
         fetchOptions.body = JSON.stringify(body)
     }
-    console.log(queryOptions.url);
     const fetchToast = new ToastInit("Loading", 'default', queryOptions.url, 5000, true);
     if (displayToasts) { 
         fetchToast.activateToast()
     }
     try {
 		const response = await fetch(queryOptions.url, fetchOptions)
-        if (response.status === 403 || response.status === 404) throw new Error("Something went wrong");
         const formatedResponse: Response = await response.json();
 
 

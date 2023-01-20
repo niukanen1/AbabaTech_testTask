@@ -11,9 +11,13 @@ class AppStore {
         user: null,
     }
     isLoading = false; 
+    isConfetti = false;
 
     setLoader(value: boolean) { 
         this.isLoading = value;
+    }
+    ShowConfetti(value: boolean) { 
+        this.isConfetti = value;  
     }
 
     setIsLoggedIn(newValue: boolean) { 
