@@ -1,3 +1,23 @@
+
+
+@media screen and (min-width : 480px) and (max-width : 760px) {
+    .wrap .item{
+        margin-right: 0;
+        flex: 0 0 33.3333% !important;
+    }
+    
+}
+
+
+@media screen and (max-width : 480px) {
+    .wrap .item{
+        margin-right: 0;
+        flex: 0 0 50% !important;
+    }
+    
+}
+
+
 .list{
     display: flex;
     width: 100%;
@@ -31,3 +51,23 @@
     height: fit-content;
     margin-right: 20px;
 }
+
+.wrap{
+ 
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    
+}
+
+.wrap .item{
+    margin-right: 0;
+    flex: 0 0 20%;
+}
+
+
+.wrap .item a{
+    display: flex;
+    justify-content: space-around;
+}
+

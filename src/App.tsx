@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { CheckIfLoggedIn } from "./Services/UserService";
 import { observer } from "mobx-react-lite";
 import AppStore from "./Stores/AppStore";
+import  Profile  from './pages/Profile/Profile';
 
 function App() {
     useEffect(() => { 
@@ -23,6 +24,7 @@ function App() {
 					<Route index element={<HomePage />} />
 					<Route path={"movies/:pageId"} element={<FullMovieList />} />
 					<Route path={"movies/:pageId/:movieId"} element={<Movie />} />
+					<Route path={"profile"} element={<Profile />} />
 				</Route>
 			</Routes>
 		</div>
