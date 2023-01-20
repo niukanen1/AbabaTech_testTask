@@ -15,6 +15,16 @@
 
 }
 
+.modalContainer { 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(30px);
+}
+
 .main {
     display: flex;
     max-width: 1000px;

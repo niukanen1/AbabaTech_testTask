@@ -28,7 +28,6 @@ export class ToastInit {
 			autoClose: this.autoClose,
 			isLoading: this.isLoading,
 		});
-        console.log(this.toastId);
 	}
 	updateToast(newToast: ToastInit) {
 		toast.update(this.toastId, {

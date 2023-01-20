@@ -10,13 +10,14 @@ import {
 } from "../../components/Movies/MovieService";
 import styles from "./FullMovieList.module.css";
 import Search from "../../components/Search/Search";
+import { toast } from "react-toastify";
 
 export function FullMovieList() {
     const {pageId} = useParams();
 	const [isLoading, setIsLoading] = useState(false);
 	const [movieList, setMovieList] = useState<MovieType[]>([]);
     const [pages, setPages] = useState<{cur: number, total: number}>({cur: 0, total: 0});
-	const [searchRequest, setSearchRequest] = useState('')
+	const [searchRequest, setSearchRequest] = useState('');
 
     const navigate = useNavigate(); 
     const location = useLocation();
@@ -25,7 +26,7 @@ export function FullMovieList() {
 		setIsLoading(true);
 		GetLatestCompactMovies(parseInt(pageId as string), MovieSortType.popular).then((response) => {
             if (!response) { 
-                alert("Failed to fetch movies");
+                toast.error("Failed to fetch movies");
             }
 			setMovieList(response?.results as MovieType[]);
 			setIsLoading(false);
@@ -34,7 +35,6 @@ export function FullMovieList() {
                 cur: response?.page as number, 
                 total: response?.total_pages as number,
             }); 
-
 		});
 	}, [location.pathname]);
 
@@ -44,7 +44,7 @@ export function FullMovieList() {
 				setMovieList(response?.results as unknown as MovieType[]);
 			});
 		}
-	}, [searchRequest])
+	}, [searchRequest]);
 
 	return (
 		<main className={styles.mainContainer}>

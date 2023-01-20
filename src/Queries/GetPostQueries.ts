@@ -1,12 +1,6 @@
-import { render } from "@testing-library/react";
-import React from "react";
-import { toast, TypeOptions } from "react-toastify";
-import { v4 } from "uuid";
-import SingleAppLog, { AppLog } from "../components/AppLogs/SingleAppLog/SingleAppLog";
-import { toastDefaultProperties, ToastInit } from "../components/Toasts/ToastService";
+import { ToastInit } from "../components/Toasts/ToastService";
 import { User } from "../Services/UserService";
 import AppStore from "../Stores/AppStore";
-import LogStore from "../Stores/LogStore";
 
 export type Response = {
 	message: string;
@@ -45,6 +39,7 @@ export const queries = {
 	addWatchLaterMovie: new QueryOptions(baseURL+"/protected/movies/addWatchLaterMovie", "POST"),
 	deleteWatchLaterMovie: new QueryOptions(baseURL+"/protected/movies/deleteWatchLaterMovie", "POST"),
     checkIfLoggedIn: new QueryOptions(baseURL+"/protected/user/checkIfLoggedIn", "POST"),
+    resetPassword: new QueryOptions(baseURL + "/protected/user/resetPassword", "POST"),
 	getUserInfo: new QueryOptions(baseURL+"/protected/user/getUserInfo", "GET"),
 };
 
@@ -53,6 +48,7 @@ type QueryFetchOptions = {
     getUserInfo?: boolean
     displayToasts?: boolean
 }
+
 export async function QueryFetch(queryOptions: QueryOptions, { body, getUserInfo=true, displayToasts=true}: QueryFetchOptions, completion: (response: Response) => void) { 
     const fetchOptions: RequestInit = { 
         ...queryOptions.options

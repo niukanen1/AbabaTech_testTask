@@ -12,7 +12,6 @@ export async function LogRegUser(isLogin: boolean, user: User) {
 	let queryOption = isLogin ? queries.loginUser : queries.registerUser;
 	await QueryFetch(queryOption, { body: user }, (response) => {
 		if (!response.success) {
-			// alert(response.message);
 		} else {
 			AppStore.setIsLoggedIn(true);
 			AppStore.setUserData(user);
@@ -32,8 +31,13 @@ export async function LogOut() {
 	});
 }
 
-// export async function GetUserData() {
-// }
+export async function ResetPassword(newPass: string) { 
+    await QueryFetch(queries.resetPassword, {body: {newPass: newPass}}, (response) => { 
+        if (response.success) { 
+            AppStore.setUserData(response.data);
+        }
+    })
+}
 
 export async function CheckIfLoggedIn() {
 	await QueryFetch(queries.checkIfLoggedIn, { displayToasts: AppStore.userData.isLoggedIn }, (response) => {

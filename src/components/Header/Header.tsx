@@ -33,14 +33,6 @@ function Header() {
 				<a href='/profile'  className={styles.link}>Profile</a>
                 </li>
 				<li>
-					{AppStore.userData.isLoggedIn ? <Button action={async () => {
-                        await QueryFetch(queries.getUserInfo, {}, (response) => {
-                            if (response.success) { 
-                                AppStore.setUserData(response.data);
-                            }
-                            // TODO add error handling
-                        })
-                    }}>Profile</Button> : <></>}
 					{AppStore.userData.isLoggedIn ? (
 						<Button action={()=>handleLogOut()}>Log Out</Button>
 					) : (
