@@ -36,6 +36,7 @@ export class ToastInit {
 			type: newToast.type,
 			isLoading: newToast.isLoading,
 			autoClose: newToast.autoClose,
+            
 		});
 	}
     dismiss() { 
