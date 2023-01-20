@@ -1,5 +1,6 @@
 import styles from './genres.module.css'
 import React, {useEffect, useState} from "react";
+import { v4 } from 'uuid';
 
 type MainInfoProps ={
     MovieGenres : {
@@ -13,7 +14,7 @@ export default function Genres({MovieGenres} : MainInfoProps) {
         <div className={styles.genres}>
             {
                 MovieGenres?.map((el) => {
-                    return (<span className={styles.genre}>{el.name}</span>)
+                    return (<span key={v4()} className={styles.genre}>{el.name}</span>)
                 })
             }
         </div>

@@ -6,6 +6,7 @@ import AppStore from "../../Stores/AppStore";
 import Button from "../Buttons/Button/Button";
 import TextInput from "../FormElements/TextInput/TextInput";
 import { ModalType } from "../Header/Header";
+import Loader, { LoaderSize } from "../Loader/Loader";
 import styles from "./RegistrationForm.module.css";
 
 export type RegistrationFormProps = {
@@ -15,22 +16,22 @@ export type RegistrationFormProps = {
 };
 function RegistrationForm({ modalType, changeModalType, closeModal }: RegistrationFormProps) {
 	const [userData, setUserData] = useState({ email: "", password: "" });
-    const [loading, setLoading] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-        let loginUser: boolean = false 
-        if (modalType === ModalType.login) { 
-            loginUser = true
-        }
+        setLoading(true)
+		let loginUser: boolean = false;
+		if (modalType === ModalType.login) {
+			loginUser = true;
+		}
 		await LogRegUser(loginUser, userData);
-        if (AppStore.userData.isLoggedIn) { 
-            await CheckIfLoggedIn();
-            closeModal();
-        }
-        
+		if (AppStore.userData.isLoggedIn) {
+			await CheckIfLoggedIn();
+			closeModal();
+		}
+        setLoading(false);
 	};
-
 
 	return (
 		<div className={styles.container}>
@@ -57,9 +58,13 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
 						});
 					}}
 				/>
-				<Button isSubmit filled action={() => {}}>
-                    {loading ? <p>Loading</p> : modalType === ModalType.login ? "Log In" : "Sign Up"}
-				</Button>
+				{loading ? (
+					<Loader size={LoaderSize.small} />
+				) : (
+					<Button isSubmit filled action={() => {}}>
+						{modalType === ModalType.login ? "Log In" : "Sign Up"}
+					</Button>
+				)}
 			</form>
 			{modalType === ModalType.login ? (
 				<p className={styles.bottom_text}>
@@ -68,7 +73,7 @@ function RegistrationForm({ modalType, changeModalType, closeModal }: Registrati
 						onClick={() => {
 							changeModalType();
 						}}>
-						Signup
+						Sign up
 					</span>
 				</p>
 			) : (

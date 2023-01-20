@@ -25,8 +25,7 @@ export async function LogRegUser(isLogin: boolean, user: User) {
 }
 
 export async function LogOut() {
-	await QueryFetch(queries.logout, {}, (response) => {
-		console.log(response);
+	await QueryFetch(queries.logout, {getUserInfo: false}, (response) => {
 		if (response.success) {
 			AppStore.setIsLoggedIn(false);
             AppStore.setUserData({
@@ -41,7 +40,7 @@ export async function LogOut() {
 // }
 
 export async function CheckIfLoggedIn() {
-	await QueryFetch(queries.checkIfLoggedIn, {}, (response) => {
+	await QueryFetch(queries.checkIfLoggedIn, {displayToasts: AppStore.userData.isLoggedIn}, (response) => {
 		if (response.success) {
 			AppStore.setIsLoggedIn(true);
 		}

@@ -243,7 +243,7 @@ export async function MovieManipulation(
 	movieID: number,
 	completion: (response: Response) => void
 ) { 
-    await QueryFetch(queries[manipulation], {body: {movieID: movieID}, activateFullScreenLoader: false}, (response) => {completion(response);})
+    await QueryFetch(queries[manipulation], {body: {movieID: movieID}}, (response) => {completion(response);})
 }
 
 

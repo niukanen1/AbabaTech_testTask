@@ -4,6 +4,7 @@ import {Cast, Crew} from "../Movies/MovieService";
 import {MovieType} from "../Movies/MovieCompact/MovieCompact";
 import PersonCard from "../Movies/MovieCards/PersonCard/PersonCard";
 import MovieCard from "../Movies/MovieCards/MovieCard/MovieCard";
+import { v4 } from 'uuid';
 
 type HorizontalListProps = {
 
@@ -24,12 +25,12 @@ export default function HorizontalList({Actors, Crew, Movies} : HorizontalListPr
         <div className={styles.list}>
             {
                 Movies ?
-                    Movies?.map((el) => (<div key={el.id} className={styles.item}><MovieCard Movie={el}/></div>))
+                    Movies?.map((el) => (<div key={v4()} className={styles.item}><MovieCard Movie={el}/></div>))
                     :
                     (Actors ?
-                            Actors.map((el) => (<div key={el.id} className={styles.item}><PersonCard Actor={el}/></div>))
+                            Actors.map((el) => (<div key={v4()} className={styles.item}><PersonCard Actor={el}/></div>))
                         :
-                            Crew?.map((el) => (<div key={el.id} className={styles.item}><PersonCard CrewMan={el}/></div>))
+                            Crew?.map((el) => (<div key={v4()} className={styles.item}><PersonCard CrewMan={el}/></div>))
                     )
             }
         </div>

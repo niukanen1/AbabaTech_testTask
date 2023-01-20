@@ -1,5 +1,12 @@
+import { render } from "@testing-library/react";
+import React from "react";
+import { toast, TypeOptions } from "react-toastify";
+import { v4 } from "uuid";
+import SingleAppLog, { AppLog } from "../components/AppLogs/SingleAppLog/SingleAppLog";
+import { toastDefaultProperties, ToastInit } from "../components/Toasts/ToastService";
 import { User } from "../Services/UserService";
 import AppStore from "../Stores/AppStore";
+import LogStore from "../Stores/LogStore";
 
 export type Response = {
 	message: string;
@@ -44,24 +51,29 @@ export const queries = {
 
 type QueryFetchOptions = { 
     body?: any
-    activateFullScreenLoader?: boolean
     getUserInfo?: boolean
+    displayToasts?: boolean
 }
-export async function QueryFetch(queryOptions: QueryOptions, { body, activateFullScreenLoader=true, getUserInfo=true}: QueryFetchOptions, completion: (response: Response) => void) { 
+export async function QueryFetch(queryOptions: QueryOptions, { body, getUserInfo=true, displayToasts=true}: QueryFetchOptions, completion: (response: Response) => void) { 
     const fetchOptions: RequestInit = { 
         ...queryOptions.options
     }
     if (queryOptions.options.method === "POST") { 
         fetchOptions.body = JSON.stringify(body)
     }
-
-    AppStore.setLoader(activateFullScreenLoader); 
+    console.log(queryOptions.url);
+    const fetchToast = new ToastInit("Loading", 'default', queryOptions.url, 5000, true);
+    if (displayToasts) { 
+        fetchToast.activateToast()
+    }
     try {
-		const response = await fetch(queryOptions.url, fetchOptions);
+		const response = await fetch(queryOptions.url, fetchOptions)
+        if (response.status === 403 || response.status === 404) throw new Error("Something went wrong");
         const formatedResponse: Response = await response.json();
 
+
         if (formatedResponse.jwtExpired) { 
-            console.log("TOKEN EXPIRED")
+            fetchToast.updateToast(new ToastInit("Token expired", 'error'));
             AppStore.setIsLoggedIn(false)
             AppStore.setUserData({
                 email: "",
@@ -70,17 +82,25 @@ export async function QueryFetch(queryOptions: QueryOptions, { body, activateFul
             return 
         }
         if (formatedResponse.success && getUserInfo) { 
-            await QueryFetch(queries.getUserInfo, {getUserInfo: false}, (response) => {
+            const fetchToast = new ToastInit("Updating user data", 'info', queryOptions.url, 5000, true);
+            fetchToast.activateToast();
+            await QueryFetch(queries.getUserInfo, {getUserInfo: false, displayToasts: false}, (response) => {
                 if (response.success) { 
                     AppStore.setUserData(response.data as User);
+                    fetchToast.updateToast(new ToastInit(response.message, 'success'));
+                } else { 
+                    fetchToast.updateToast(new ToastInit(response.message, 'warning'));
                 }
             })
+            
+        }
+        if (formatedResponse.success) { 
+            fetchToast.updateToast(new ToastInit(formatedResponse.message, 'success'));
+        } else { 
+            fetchToast.updateToast(new ToastInit(formatedResponse.message, 'warning'));
         }
         completion(formatedResponse);
 	} catch (err) {
-		alert((err as Error).message);
+        fetchToast.updateToast(new ToastInit((err as Error).message, 'error'));
 	}
-    finally { 
-        AppStore.setLoader(false); 
-    }
 }

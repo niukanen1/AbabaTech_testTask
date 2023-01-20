@@ -23,7 +23,7 @@ function Loader({blockScroll=false, size, fullScreen=false}: LoaderProps) {
     const sizes = { 
         small: { 
             width: '20',
-            strokeWidth: '3'
+            strokeWidth: '5'
         }, 
         medium: { 
             width: '30',
@@ -51,8 +51,10 @@ function Loader({blockScroll=false, size, fullScreen=false}: LoaderProps) {
         }
         
     }, [AppStore.isLoading])
-
-	if (!AppStore.isLoading) return <></>;
+    if (fullScreen) { 
+        if (!AppStore.isLoading) return <></>;
+    }
+	
     
 	return (
 		<div className={style.join(' ')}>
