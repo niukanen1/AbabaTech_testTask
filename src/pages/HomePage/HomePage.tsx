@@ -11,8 +11,8 @@ function HomePage() {
 				<p>
 					To start using Movies point you just need to sign up or log in with button in the top right corner
 				</p>
-				<h3>Authors</h3>
-				<p>Movies point is developed by two developers</p>
+				<h3>Author</h3>
+				<p>Movies point is developed by Ivan Niukanen</p>
 			</article>
 		</main>
 	);
